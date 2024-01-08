@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+<!--    <style name="Base.Theme.SuperHeroesApp" parent="Theme.Material3.DayNight.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your dark theme here. &ndash;&gt;-->
+<!--        &lt;!&ndash; <item name="colorPrimary">@color/my_dark_primary</item> &ndash;&gt;-->
+<!--    </style>-->
+
+
+    <style name="Base.Theme.SuperHeroesApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Definição das cores -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowBackground">@color/black</item> <!-- Define o fundo da janela como branco -->
+        <item name="android:textColor">@android:color/white</item>
+        <!-- Outras customizações de estilo -->
+        <!-- Por exemplo: mudanças na barra de status, ícones, etc. -->
+    </style>
+</resources>

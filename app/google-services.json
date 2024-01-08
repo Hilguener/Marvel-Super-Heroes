@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "559922286011",
+    "project_id": "marvel-super-heroes-69cac",
+    "storage_bucket": "marvel-super-heroes-69cac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559922286011:android:83a2296d4d33e2b775c89e",
+        "android_client_info": {
+          "package_name": "com.hilguener.marvelsuperheroes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC12x2-k4HGWXwRuZxCoMwsQEIxWOETCfM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

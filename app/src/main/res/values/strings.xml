@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Super Heroes App</string>
+    <string name="password">senha</string>
+    <string name="email">email</string>
+    <string name="does_not_have_account">Não tem uma conta? <b><font color="#000000">Cadastre-se.</font></b></string>
+    <string name="enter">entrar</string>
+</resources>

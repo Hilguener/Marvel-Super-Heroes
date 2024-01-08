@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyBottomNavText" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginTop">50dp</item>
+        <!-- Mais atributos de texto conforme necessário -->
+    </style>
+
+    <style name="Theme.SuperHeroesApp.FormEditTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">36dp</item>
+        <item name="android:layout_marginEnd">36dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+    </style>
+
+    <style name="Theme.SuperHeroesApp.FormEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="Theme.MarvelApp.Button" parent="Widget.MaterialComponents.Button">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textColor">@color/white</item>
+
+    <item name="android:layout_marginStart">36dp</item>
+    <item name="android:layout_marginEnd">36dp</item>
+
+    <item name="android:padding">16dp</item>
+    <item name="android:layout_marginBottom">15dp</item>
+
+<!--    <item name="backgroundTint">@color/button_background</item>-->
+</style>
+
+    <style name="Theme.SuperHeroesApp.FormContainer">
+        <item name="android:layout_marginStart">36dp</item>
+        <item name="android:layout_marginEnd">36dp</item>
+    </style>
+
+    <style name="Theme.SuperHeroesApp.TextViewBase.Form">
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginBottom">24dp</item>
+    </style>
+
+    <style name="Theme.SuperHeroesApp.TextViewBase" parent="Theme.SuperHeroesApp.FormContainer">
+        <item name="android:textColor">@color/gray_text</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+</resources>
