@@ -3,7 +3,7 @@ package com.hilguener.marvelsuperheroes.presenter
 import com.hilguener.marvelsuperheroes.datasource.AllCharactersRemoteDataSource
 import com.hilguener.superheroesapp.datasource.callback.CharactersCallBack
 import com.hilguener.superheroesapp.model.character.Character
-import com.hilguener.superheroesapp.ui.fragment.CharactersFragment
+import com.hilguener.marvelsuperheroes.ui.fragment.CharactersFragment
 
 class AllCharactersPresenter(
     val view: CharactersFragment,

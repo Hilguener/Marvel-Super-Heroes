@@ -1,4 +1,4 @@
-package com.hilguener.superheroesapp.ui.fragment
+package com.hilguener.marvelsuperheroes.ui.fragment
 
 import android.content.Context
 import android.content.Intent

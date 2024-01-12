@@ -8,7 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hilguener.marvelsuperheroes.R
 import com.hilguener.marvelsuperheroes.databinding.ActivityHomeBinding
 import com.hilguener.marvelsuperheroes.ui.fragment.StoriesFragment
-import com.hilguener.superheroesapp.ui.fragment.CharactersFragment
+import com.hilguener.marvelsuperheroes.ui.fragment.CharactersFragment
 import com.hilguener.superheroesapp.ui.fragment.ComicsFragment
 import com.hilguener.superheroesapp.ui.fragment.EventsFragment
 
