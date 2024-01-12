@@ -1,70 +1,171 @@
 package com.hilguener.marvelsuperheroes.ui.activity
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.OAuthProvider
+import com.hilguener.marvelsuperheroes.R
 import com.hilguener.marvelsuperheroes.databinding.ActivityLoginBinding
+import com.hilguener.marvelsuperheroes.datasource.callback.LoginContract
+import com.hilguener.marvelsuperheroes.presenter.LoginPresenter
 
-class LoginActivity : AppCompatActivity() {
+
+class LoginActivity : AppCompatActivity(), LoginContract.View {
+
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var auth: FirebaseAuth
+    private lateinit var presenter: LoginContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance()
+        presenter = LoginPresenter()
+        presenter.attachView(this)
 
-        val editTextEmail = binding.loginEditEmail
-        val editTextPassword = binding.loginEditPassword
-        val enterButton = binding.loginBtnEnter
+        binding.loginEditEmail.addTextChangedListener(presenter.getTextWatcher())
+        binding.loginEditPassword.addTextChangedListener(presenter.getTextWatcher())
 
-        editTextEmail.addTextChangedListener(watcher)
-        editTextPassword.addTextChangedListener(watcher)
+        val rememberMeCheckbox = binding.rememberMeCheckBox
+        val sharedPreferences = getPreferences(Context.MODE_PRIVATE)
 
-        enterButton.setOnClickListener {
-            val email = editTextEmail.text.toString()
-            val password = editTextPassword.text.toString()
+        // Verifique o estado do checkbox salvo no SharedPreferences
+        rememberMeCheckbox.isChecked =
+            sharedPreferences.getBoolean(getString(R.string.pref_key_remember_me), false)
 
-            signInWithEmailAndPassword(email, password)
+        val loginButton = binding.loginBtnEnter
+        loginButton.setOnClickListener {
+            val email = getEmail()
+            val password = getPassword()
+
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                presenter.onLoginButtonClicked(email, password)
+            }
+        }
+
+        binding.loginBtnGithub.setOnClickListener {
+            githubLogin()
+        }
+        binding.loginBtnGoogle.setOnClickListener {
+            presenter.onGoogleSignInButtonClicked()
+        }
+
+        binding.loginTxtRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        rememberMeCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            val editor = sharedPreferences.edit()
+            editor.putBoolean(getString(R.string.pref_key_remember_me), isChecked)
+            editor.apply()
         }
     }
 
-    private val watcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            binding.loginBtnEnter.isEnabled = p0.toString().isNotEmpty()
-        }
-
-        override fun afterTextChanged(p0: Editable?) {}
+    override fun isRememberMeChecked(): Boolean {
+        return binding.rememberMeCheckBox.isChecked
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detachView()
     }
 
-    private fun signInWithEmailAndPassword(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Login bem-sucedido
-                    Toast.makeText(this, "Login bem-sucedido", Toast.LENGTH_SHORT).show()
+    override fun startGoogleSignInActivityForResult(intent: Intent) {
+        startActivityForResult(intent, GOOGLE_SIGN_IN_REQUEST_CODE)
+    }
 
-                    // Redirecionar para HomeActivity após o login bem-sucedido
-                    val homeIntent = Intent(this, HomeActivity::class.java)
-                    startActivity(homeIntent)
-                    finish() // Opcional: Finaliza a LoginActivity para que o usuário não possa voltar pressionando o botão "Voltar"
-                } else {
-                    // Se falhar, exiba uma mensagem para o usuário
-                    Toast.makeText(
-                        this,
-                        "Falha no login: ${task.exception?.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+    override fun getContext(): Context {
+        return applicationContext
+    }
+
+    override fun getEmail(): String {
+        return binding.loginEditEmail.text.toString()
+    }
+
+    override fun getPassword(): String {
+        return binding.loginEditPassword.text.toString()
+    }
+
+    override fun enableLoginButton(enabled: Boolean) {
+        binding.loginBtnEnter.isEnabled = enabled
+    }
+
+    override fun showLoginFailed(message: String) {
+        // Exibir mensagem de falha de login para o usuário
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showLoginSuccess() {
+
+        var displayName = FirebaseAuth.getInstance().currentUser?.displayName
+
+        // Se o usuário não tiver fornecido um nome de exibição, use o endereço de e-mail
+        displayName ?: run {
+            displayName = displayName ?: FirebaseAuth.getInstance().currentUser?.email
+        }
+
+        // Redirecionar para a próxima tela ou executar ações após o login bem-sucedido
+        Toast.makeText(this, "Bem-vindo, $displayName", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    override fun startGithubSignInActivityForResult(intent: Intent) {
+        startActivityForResult(intent, GIT_SIGN_IN_REQUEST_CODE)
+    }
+
+
+    override fun getActivity(): Activity {
+        return this
+    }
+
+    private fun githubLogin() {
+        val auth = FirebaseAuth.getInstance()
+        val githubProvider = OAuthProvider.newBuilder("github.com")
+
+        auth.startActivityForSignInWithProvider(this, githubProvider.build())
+            .addOnSuccessListener { authResult ->
+                // Login bem-sucedido
+                val user = authResult.user
+
+                // Obtendo o nome do usuário
+                val displayName = user?.displayName ?: "Unknown User"
+
+                Toast.makeText(this, "Welcome, $displayName", Toast.LENGTH_LONG).show()
+
+                val intent = Intent(this, HomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, exception.toString(), Toast.LENGTH_LONG).show()
             }
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == GOOGLE_SIGN_IN_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            presenter.handleGoogleSignInResult(data)
+        } else {
+            // Handle cases where the sign-in process was canceled or failed
+            // For example, you might display an error message to the user
+        }
+    }
+
+
+    companion object {
+        private const val GOOGLE_SIGN_IN_REQUEST_CODE = 123 // Use o número desejado
+        private const val GIT_SIGN_IN_REQUEST_CODE = 456
+    }
 }
+
+

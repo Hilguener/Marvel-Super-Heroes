@@ -1,7 +1,28 @@
 <resources>
     <string name="app_name">Super Heroes App</string>
-    <string name="password">senha</string>
+    <string name="password">password</string>
     <string name="email">email</string>
-    <string name="does_not_have_account">Não tem uma conta? <b><font color="#000000">Cadastre-se.</font></b></string>
-    <string name="enter">entrar</string>
+    <string name="dont_have_account">Don\'t have an account? <b><font color="#000000">Sign Up.</font></b></string>
+    <string name="enter">login</string>
+    <string name="default_web_client_id" translatable="false">559922286011-el04caomar2e63c20iiv2j94m4dpv3ut.apps.googleusercontent.com</string>
+    <string name="create_account">create account</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="already_have_account">Already have an account?<b><font color="#000000"> Log in.</font></b></string>
+    <string name="email_exists_error">This email is already in use</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="remember_me">Remember me</string>
+    <string name="or">or</string>
+    <string name="continue_with_github">Continue with Github</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="facebook_app_id" translatable="false">257512660542258</string>
+    <string name="facebook_application_id" translatable="false">257512660542258</string>
+    <string name="facebook_client_token" translatable="false">9acc90f0c4a38194094a19da8269578e</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb1234</string>
+    <string name="github_login">Login</string>
+    <string name="sucessful_login">Successful login!</string>
+    <string name="failed_login">Login failed %1$s</string>
+    <string name="pref_key_remember_me" translatable="false">remember_me</string>
+    <string name="password_requirements">The password must contain at least 10 characters including letters, numbers and symbols</string>
+
+
 </resources>

@@ -126,4 +126,6 @@ class StoriesFragment : Fragment() {
     fun onFailure(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
+
+
 }
