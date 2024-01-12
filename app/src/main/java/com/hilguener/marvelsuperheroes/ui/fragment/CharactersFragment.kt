@@ -71,7 +71,7 @@ class CharactersFragment : Fragment() {
     private fun setupRecyclerView(view: View) {
         val recyclerView: RecyclerView =
             view.findViewById(R.id.rvMain) // Usando view para encontrar o RecyclerView
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
     }
 
     private fun setupAdapter() {

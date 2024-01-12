@@ -14,10 +14,6 @@
     <string name="or">or</string>
     <string name="continue_with_github">Continue with Github</string>
     <string name="continue_with_google">Continue with Google</string>
-    <string name="facebook_app_id" translatable="false">257512660542258</string>
-    <string name="facebook_application_id" translatable="false">257512660542258</string>
-    <string name="facebook_client_token" translatable="false">9acc90f0c4a38194094a19da8269578e</string>
-    <string name="fb_login_protocol_scheme" translatable="false">fb1234</string>
     <string name="github_login">Login</string>
     <string name="sucessful_login">Successful login!</string>
     <string name="failed_login">Login failed %1$s</string>
