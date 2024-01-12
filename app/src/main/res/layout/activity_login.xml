@@ -61,14 +61,29 @@
                 android:layout_height="wrap_content"
                 app:text="@string/enter" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center"
-                android:text="Forgot your password?">
 
-            </TextView>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginEnd="34dp">
+
+                <CheckBox
+                    android:id="@+id/rememberMeCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="@string/remember_me" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    android:text="@string/forgot_your_password">
+
+                </TextView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <FrameLayout
                 style="@style/Theme.SuperHeroesApp.FormContainer"
@@ -86,10 +101,11 @@
                     android:layout_gravity="center"
                     android:background="@color/white"
                     android:padding="8dp"
-                    android:text="OU" />
+                    android:text="@string/or" />
             </FrameLayout>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/loginBtnGithub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -107,26 +123,26 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/facebook"></ImageView>
+                        android:src="@drawable/github" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
-                        android:text="Continue with facebook"></TextView>
+                        android:text="@string/continue_with_github" />
 
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:src="@drawable/baseline_arrow_forward_24">
-
-                    </ImageButton>
+                        android:src="@drawable/baseline_arrow_forward_24" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+
             <androidx.cardview.widget.CardView
+                android:id="@+id/loginBtnGoogle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -151,7 +167,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
-                        android:text="Continue with google"></TextView>
+                        android:text="@string/continue_with_google"></TextView>
 
                     <ImageButton
                         android:layout_width="wrap_content"
@@ -184,7 +200,7 @@
         android:layout_marginEnd="0dp"
         android:background="@color/white"
         android:padding="24dp"
-        android:text="@string/does_not_have_account"
+        android:text="@string/dont_have_account"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

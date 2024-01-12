@@ -7,10 +7,11 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hilguener.marvelsuperheroes.R
 import com.hilguener.marvelsuperheroes.databinding.ActivityHomeBinding
+import com.hilguener.marvelsuperheroes.ui.fragment.StoriesFragment
 import com.hilguener.superheroesapp.ui.fragment.CharactersFragment
 import com.hilguener.superheroesapp.ui.fragment.ComicsFragment
 import com.hilguener.superheroesapp.ui.fragment.EventsFragment
-import com.hilguener.marvelsuperheroes.ui.fragment.StoriesFragment
+
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -20,9 +21,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val toolbar = binding.toolbar
-        setSupportActionBar(toolbar)
 
         val bottomNavView: BottomNavigationView = binding.bottomNavView
         bottomNavView.setOnNavigationItemSelectedListener { menuItem ->

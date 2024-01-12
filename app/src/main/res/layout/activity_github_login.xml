@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.GithubLoginActivity"
+    android:orientation="vertical">
+
+    <WebView
+        android:id="@+id/githubLoginWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/github_logo"
+        android:layout_marginTop="100dp">
+
+    </androidx.appcompat.widget.AppCompatImageView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/login_edit_email_input"
+        style="@style/Theme.SuperHeroesApp.FormEditTextInput"
+        app:hintEnabled="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_edit_email_github"
+            style="@style/Theme.SuperHeroesApp.FormEditText"
+            android:autofillHints="@null"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.hilguener.marvelsuperheroes.ui.LoadingButton
+        android:id="@+id/login_btn_enter_github"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:text="@string/github_login" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

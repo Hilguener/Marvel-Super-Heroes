@@ -1,0 +1,21 @@
+<resources>
+    <string name="email_exists_error">Este e-mail já está em uso</string>
+    <string name="app_name">Super Heroes App</string>
+    <string name="password">senha</string>
+    <string name="email">email</string>
+    <string name="enter">" entrar"</string>
+    <string name="create_account">criar conta</string>
+    <string name="confirm_password">confirmar senha</string>
+    <string name="already_have_account">Já tem uma conta? <b><font color="#000000">Faça login.</font></b></string>
+    <string name="dont_have_account">Não tem uma conta? <b><font color="#000000">Cadastre-se.</font></b></string>
+    <string name="forgot_your_password">Esqueceu sua senha?</string>
+    <string name="remember_me">Lembrar-me</string>
+    <string name="or">ou</string>
+    <string name="continue_with_github">Entrar com Github</string>
+    <string name="continue_with_google">Entrar com Google</string>
+    <string name="github_login">Login</string>
+    <string name="sucessful_login">Login bem sucedido!</string>
+    <string name="failed_login">Falha ao fazer login %1$s</string>
+    <string name="password_requirements">A senha deve conter pelo menos 10 caracteres entre letras, números e símbolos</string>
+</resources>
+

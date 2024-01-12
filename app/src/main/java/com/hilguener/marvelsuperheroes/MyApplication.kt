@@ -1,6 +1,7 @@
 package com.hilguener.marvelsuperheroes
 
 import android.app.Application
+import com.facebook.FacebookSdk
 import com.google.firebase.FirebaseApp
 
 class MyApplication : Application() {
@@ -10,5 +11,6 @@ class MyApplication : Application() {
 
         // Inicialize o Firebase no seu aplicativo
         FirebaseApp.initializeApp(this)
+
     }
 }

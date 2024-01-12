@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/register_txt_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/register_img_logo"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginBottom="20dp"
+                android:contentDescription="@null"
+                android:src="@drawable/marvel" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/register_edit_email_input"
+                style="@style/Theme.SuperHeroesApp.FormEditTextInput"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_edit_email"
+                    style="@style/Theme.SuperHeroesApp.FormEditText"
+                    android:autofillHints="@null"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/register_edit_password_input"
+                style="@style/Theme.SuperHeroesApp.FormEditTextInput"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_edit_password"
+                    style="@style/Theme.SuperHeroesApp.FormEditText"
+                    android:autofillHints="@null"
+                    android:hint="@string/password"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/register_edit_confirm_password_input"
+                style="@style/Theme.SuperHeroesApp.FormEditTextInput"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_edit_confirm_password"
+                    style="@style/Theme.SuperHeroesApp.FormEditText"
+                    android:autofillHints="@null"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.hilguener.marvelsuperheroes.ui.LoadingButton
+                android:id="@+id/register_btn_create_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:text="@string/create_account" />
+
+
+            <!-- Adicione este TextView abaixo do botão de criação de conta -->
+            <TextView
+                android:textAlignment="center"
+                android:id="@+id/register_txt_password_requirements"
+                style="@style/Theme.SuperHeroesApp.TextViewBase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="34dp"
+                android:layout_marginEnd="34dp"
+                android:text="@string/password_requirements"
+                app:layout_constraintTop_toBottomOf="@id/register_btn_create_account" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/register_txt_login"
+        style="@style/Theme.SuperHeroesApp.TextViewBase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="24dp"
+        android:text="@string/already_have_account"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
