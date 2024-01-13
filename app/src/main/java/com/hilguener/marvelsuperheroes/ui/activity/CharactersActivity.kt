@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -22,7 +21,6 @@ import com.hilguener.marvelsuperheroes.model.series.Serie
 import com.hilguener.marvelsuperheroes.presenter.AllCharactersPresenter
 import com.hilguener.marvelsuperheroes.ui.adapter.CharacterAdapter
 import com.hilguener.superheroesapp.model.character.Character
-import com.hilguener.marvelsuperheroes.ui.adapter.CharacterHomeScreenAdapter
 
 class CharactersActivity : AppCompatActivity(), BaseView {
     private lateinit var adapter: CharacterAdapter
