@@ -1,56 +1,47 @@
-package com.hilguener.superheroesapp.ui.fragment
+package com.hilguener.marvelsuperheroes.ui.activity
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
-import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.SearchView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.hilguener.marvelsuperheroes.R
-import com.hilguener.marvelsuperheroes.databinding.FragmentComicsBinding
-import com.hilguener.superheroesapp.model.comics.Comic
+import com.hilguener.marvelsuperheroes.databinding.ActivityComicsBinding
 import com.hilguener.marvelsuperheroes.presenter.AllComicsPresenter
-import com.hilguener.marvelsuperheroes.ui.activity.ComicActivity
+import com.hilguener.superheroesapp.model.comics.Comic
 import com.hilguener.superheroesapp.ui.adapter.ComicsAdapter
 
-class ComicsFragment : Fragment() {
-
+class ComicsActivity : AppCompatActivity() {
     private lateinit var rv: RecyclerView
     private lateinit var adapter: ComicsAdapter
     private lateinit var progressBar: ProgressBar
     private lateinit var presenter: AllComicsPresenter
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var binding: FragmentComicsBinding
+    private lateinit var binding: ActivityComicsBinding // Certifique-se de criar a classe ActivityComicsBinding apropriada
     private var comic: List<Comic>? = listOf()
     private var handler = Handler()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentComicsBinding.inflate(inflater, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityComicsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         presenter = AllComicsPresenter(this)
         progressBar = binding.pbComics
-        return binding.root
 
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         setupAdapter()
-        setupRecyclerView(binding.root)
+        setupRecyclerView()
         setupSharedPreferences()
 
         val cachedComicsJson = sharedPreferences.getString("cached_comics", null)
@@ -60,27 +51,37 @@ class ComicsFragment : Fragment() {
         } else {
             loadFromApi()
         }
-
-
     }
 
     private fun setupSharedPreferences() {
-        sharedPreferences = requireContext().getSharedPreferences(
+        sharedPreferences = getSharedPreferences(
             "com.example.superheroesapp.PREFERENCES",
             Context.MODE_PRIVATE
         )
     }
 
-    private fun setupRecyclerView(view: View) {
-        val recyclerView: RecyclerView =
-            view.findViewById(R.id.rvComics) // Usando view para encontrar o RecyclerView
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        menuInflater.inflate(R.menu.bottom_nav_menu, menu)
+//
+//        val searchItem = menu.findItem(R.id.searchView)
+//        val searchView = searchItem.actionView as SearchView
+//
+//        // Configurar o SearchView
+//        searchView.queryHint = "search comics"
+//
+//        return true
+//    }
+
+
+    private fun setupRecyclerView() {
+        val recyclerView: RecyclerView = findViewById(R.id.rvComics)
+        recyclerView.layoutManager = GridLayoutManager(this, 3)
     }
 
     private fun setupAdapter() {
         adapter = ComicsAdapter(object : ComicsAdapter.OnItemClickListener {
             override fun onItemClick(comicId: Int) {
-                val intent = Intent(requireContext(), ComicActivity::class.java).apply {
+                val intent = Intent(this@ComicsActivity, ComicActivity::class.java).apply {
                     putExtra("comicId", comicId)
                 }
                 startActivity(intent)
@@ -89,14 +90,11 @@ class ComicsFragment : Fragment() {
         binding.rvComics.adapter = adapter
     }
 
-
     fun showComics(comics: List<Comic>) {
         comic = comics
         adapter.submitData(lifecycle, PagingData.from(comics))
 
         val jsonComics = convertComicListToJson(comics)
-
-        // Salvar o JSON na SharedPreferences
         val editor = sharedPreferences.edit()
         editor.putString("cached_comics", jsonComics)
         editor.apply()
@@ -113,7 +111,6 @@ class ComicsFragment : Fragment() {
         return gson.toJson(list)
     }
 
-
     private fun loadFromApi() {
         presenter.loadComics()
     }
@@ -129,6 +126,6 @@ class ComicsFragment : Fragment() {
     }
 
     fun onFailure(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

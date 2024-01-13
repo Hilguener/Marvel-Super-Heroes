@@ -1,35 +1,51 @@
 <!-- comic_item.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="205dp"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="15dp"
+    android:paddingBottom="20dp"
     android:layout_marginStart="15dp"
-    android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/comic_cover"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_vertical"
-        android:scaleType="fitCenter" />
+    android:layout_marginEnd="15dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/comic_title"
+        <ImageView
+            android:id="@+id/comic_cover"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerInside" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="@font/komika"
-            android:maxLines="3"
-            android:text="Comic Title"
-            android:textAlignment="center"
-            android:textSize="13sp"></TextView>
-        <!-- Additional details like author, publication date, etc. -->
+            android:orientation="horizontal">
+
+            <TextView
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:layout_weight="1"
+                android:id="@+id/comic_title"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_black"
+                android:maxLines="3"
+                android:ellipsize="end"
+                tools:text="Comic Title"
+                android:textAlignment="center"
+                android:textSize="15sp" />
+            <!-- Additional details like author, publication date, etc. -->
+        </LinearLayout>
+
     </LinearLayout>
 
+</androidx.cardview.widget.CardView>
 
-</LinearLayout>

@@ -1,12 +1,12 @@
 package com.hilguener.marvelsuperheroes.presenter
 
+import com.hilguener.marvelsuperheroes.ui.activity.StoriesActivity
 import com.hilguener.superheroesapp.datasource.AllStoriesRemoteDataSource
 import com.hilguener.superheroesapp.datasource.callback.StoriesCallback
 import com.hilguener.superheroesapp.model.stories.Story
-import com.hilguener.marvelsuperheroes.ui.fragment.StoriesFragment
 
 class AllStoriesPresenter(
-    val view: StoriesFragment,
+    val view: StoriesActivity,
     val dataSource: AllStoriesRemoteDataSource = AllStoriesRemoteDataSource()
 ) :
     StoriesCallback {

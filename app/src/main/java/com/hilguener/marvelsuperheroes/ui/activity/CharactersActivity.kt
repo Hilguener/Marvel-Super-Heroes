@@ -1,82 +1,72 @@
-package com.hilguener.marvelsuperheroes.ui.fragment
+package com.hilguener.marvelsuperheroes.ui.activity
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.hilguener.marvelsuperheroes.R
-import com.hilguener.marvelsuperheroes.databinding.FragmentCharactersBinding
+import com.hilguener.marvelsuperheroes.databinding.ActivityCharactersBinding
+import com.hilguener.marvelsuperheroes.datasource.callback.BaseView
+import com.hilguener.marvelsuperheroes.model.series.Serie
 import com.hilguener.marvelsuperheroes.presenter.AllCharactersPresenter
+import com.hilguener.marvelsuperheroes.ui.adapter.CharacterAdapter
 import com.hilguener.superheroesapp.model.character.Character
-import com.hilguener.marvelsuperheroes.ui.activity.CharacterActivity
-import com.hilguener.superheroesapp.ui.adapter.CharacterAdapter
 
-class CharactersFragment : Fragment() {
+class CharactersActivity : AppCompatActivity(), BaseView {
     private lateinit var adapter: CharacterAdapter
     private lateinit var progressBar: ProgressBar
     private lateinit var presenter: AllCharactersPresenter
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var binding: FragmentCharactersBinding
-    private var category: List<Character>? = listOf()
+    private lateinit var binding: ActivityCharactersBinding
+    private var character: List<Character>? = listOf()
     private var handler = Handler()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentCharactersBinding.inflate(inflater, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityCharactersBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         presenter = AllCharactersPresenter(this)
         progressBar = binding.pb
-        return binding.root
 
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         setupAdapter()
-        setupRecyclerView(binding.root)
+        setupRecyclerView()
         setupSharedPreferences()
 
         val cachedCharactersJson = sharedPreferences.getString("cached_characters", null)
         if (cachedCharactersJson != null) {
-            val cachedEvents = convertJsonToCategoryList(cachedCharactersJson)
-            showCharacters(cachedEvents)
+            val cachedCharacters = convertJsonToCategoryList(cachedCharactersJson)
+            showCharacters(cachedCharacters)
         } else {
             loadFromApi()
         }
-
-
     }
 
     private fun setupSharedPreferences() {
-        sharedPreferences = requireContext().getSharedPreferences(
+        sharedPreferences = getSharedPreferences(
             "com.example.superheroesapp.PREFERENCES",
             Context.MODE_PRIVATE
         )
     }
 
-    private fun setupRecyclerView(view: View) {
-        val recyclerView: RecyclerView =
-            view.findViewById(R.id.rvMain) // Usando view para encontrar o RecyclerView
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
+    private fun setupRecyclerView() {
+        val recyclerView: RecyclerView = findViewById(R.id.rvMain)
+        recyclerView.layoutManager = GridLayoutManager(this, 3)
     }
 
     private fun setupAdapter() {
         adapter = CharacterAdapter {
-            val intent = Intent(requireContext(), CharacterActivity::class.java).apply {
+            val intent = Intent(this, CharacterActivity::class.java).apply {
                 putExtra("characterId", it.id)
             }
             startActivity(intent)
@@ -84,19 +74,14 @@ class CharactersFragment : Fragment() {
         binding.rvMain.adapter = adapter
     }
 
-
-    fun showCharacters(characters: List<Character>) {
-        category = characters
+    override fun showCharacters(characters: List<Character>) {
+        character = characters
         adapter.submitData(lifecycle, PagingData.from(characters))
 
-        // Converter a lista de eventos em JSON
         val jsonCharacters = convertCategoryListToJson(characters)
-
-        // Salvar o JSON na SharedPreferences
         val editor = sharedPreferences.edit()
         editor.putString("cached_characters", jsonCharacters)
         editor.apply()
-
     }
 
     private fun convertJsonToCategoryList(json: String): List<Character> {
@@ -110,22 +95,25 @@ class CharactersFragment : Fragment() {
         return gson.toJson(list)
     }
 
-
     private fun loadFromApi() {
         presenter.loadCharacters()
     }
 
-    fun showProgress() {
+    override fun showProgress() {
         progressBar.visibility = View.VISIBLE
     }
 
-    fun hideProgressBar() {
+    override fun hideProgressBar() {
         handler.postDelayed({
             binding.pb.visibility = View.GONE
         }, 2000)
     }
 
-    fun onFailure(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    override fun onFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showSeries(series: List<Serie>) {
     }
 }
+

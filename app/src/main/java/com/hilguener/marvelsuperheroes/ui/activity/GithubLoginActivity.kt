@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.OAuthProvider
+import com.hilguener.marvelsuperheroes.HomeScreen
 import com.hilguener.marvelsuperheroes.databinding.ActivityGithubLoginBinding
 import com.hilguener.marvelsuperheroes.ui.LoadingButton
 
@@ -90,7 +91,7 @@ class GithubLoginActivity : AppCompatActivity() {
     }
 
     private fun openNextActivity() {
-        val intent = Intent(this@GithubLoginActivity, HomeActivity::class.java)
+        val intent = Intent(this@GithubLoginActivity, HomeScreen::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
         finish()

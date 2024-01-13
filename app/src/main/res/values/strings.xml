@@ -19,6 +19,11 @@
     <string name="failed_login">Login failed %1$s</string>
     <string name="pref_key_remember_me" translatable="false">remember_me</string>
     <string name="password_requirements">The password must contain at least 10 characters including letters, numbers and symbols</string>
+    <string name="characters">Characters</string>
+    <string name="news">News</string>
+    <string name="comics">Comics</string>
+    <string name="stories">Stories</string>
+    <string name="events">Events</string>
 
 
 </resources>

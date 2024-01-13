@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.hilguener.marvelsuperheroes" />
+                  <option name="mobileSdkAppId" value="1:559922286011:android:83a2296d4d33e2b775c89e" />
+                  <option name="projectId" value="marvel-super-heroes-69cac" />
+                  <option name="projectNumber" value="559922286011" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

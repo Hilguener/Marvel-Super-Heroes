@@ -1,12 +1,13 @@
 package com.hilguener.marvelsuperheroes.presenter
 
+import com.hilguener.marvelsuperheroes.ui.activity.EventsActivity
 import com.hilguener.superheroesapp.datasource.AllEventsRemoteDataSource
 import com.hilguener.superheroesapp.datasource.callback.EventsCallback
 import com.hilguener.superheroesapp.model.events.Event
-import com.hilguener.superheroesapp.ui.fragment.EventsFragment
+
 
 class AllEventsPresenter(
-    val view: EventsFragment,
+    val view: EventsActivity,
     val dataSource: AllEventsRemoteDataSource = AllEventsRemoteDataSource()
 ) : EventsCallback {
 

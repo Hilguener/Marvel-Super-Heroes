@@ -18,6 +18,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".HomeScreen"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".ui.activity.GithubLoginActivity"
             android:exported="false" />
         <activity
@@ -30,10 +34,19 @@
             android:name=".ui.activity.ComicActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.activity.ComicsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.CharacterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.HomeActivity"
+            android:name=".ui.activity.CharactersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.EventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.StoriesActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.LoginActivity"
@@ -41,11 +54,13 @@
         <activity
             android:name=".ui.SplashScreen"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

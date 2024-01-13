@@ -4,10 +4,11 @@ import com.hilguener.marvelsuperheroes.datasource.AllComicsRemoteDataSource
 import com.hilguener.superheroesapp.datasource.callback.ComicsCallback
 import com.hilguener.superheroesapp.model.character.Character
 import com.hilguener.superheroesapp.model.comics.Comic
-import com.hilguener.superheroesapp.ui.fragment.ComicsFragment
+import com.hilguener.marvelsuperheroes.ui.activity.ComicsActivity
+
 
 class AllComicsPresenter(
-    val view: ComicsFragment,
+    val view: ComicsActivity,
     val dataSource: AllComicsRemoteDataSource = AllComicsRemoteDataSource()
 ) : ComicsCallback {
 

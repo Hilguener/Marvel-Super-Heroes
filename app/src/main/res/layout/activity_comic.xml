@@ -46,10 +46,12 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/poppins_black"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@id/comic_cover"
                     app:layout_constraintTop_toTopOf="@id/comic_cover" />
 
