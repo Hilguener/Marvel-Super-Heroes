@@ -4,10 +4,13 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.OAuthProvider
+import com.hilguener.marvelsuperheroes.HomeScreen
 import com.hilguener.marvelsuperheroes.R
 import com.hilguener.marvelsuperheroes.databinding.ActivityLoginBinding
 import com.hilguener.marvelsuperheroes.datasource.callback.LoginContract
@@ -39,13 +42,18 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
         val loginButton = binding.loginBtnEnter
         loginButton.setOnClickListener {
-            val email = getEmail()
-            val password = getPassword()
+            loginButton.showProgress(true)
+            Handler(Looper.getMainLooper()).postDelayed({
+                loginButton.showProgress(false)
+                val email = getEmail()
+                val password = getPassword()
 
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                presenter.onLoginButtonClicked(email, password)
-            }
+                if (email.isNotEmpty() && password.isNotEmpty()) {
+                    presenter.onLoginButtonClicked(email, password)
+                }
+            }, 2000)
         }
+
 
         binding.loginBtnGithub.setOnClickListener {
             githubLogin()
@@ -70,6 +78,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     override fun isRememberMeChecked(): Boolean {
         return binding.rememberMeCheckBox.isChecked
     }
+
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
@@ -111,7 +120,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
         // Redirecionar para a próxima tela ou executar ações após o login bem-sucedido
         Toast.makeText(this, "Bem-vindo, $displayName", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, HomeScreen::class.java)
         startActivity(intent)
         finish()
     }
@@ -139,7 +148,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
                 Toast.makeText(this, "Welcome, $displayName", Toast.LENGTH_LONG).show()
 
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, HomeScreen::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
 

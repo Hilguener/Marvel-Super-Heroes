@@ -16,6 +16,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/character_item" />
+        tools:listitem="@layout/character_item_home_screen" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

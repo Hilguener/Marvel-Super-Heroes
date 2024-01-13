@@ -9,14 +9,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.hilguener.marvelsuperheroes.databinding.CharacterItemBinding
+import com.hilguener.marvelsuperheroes.databinding.CharacterItemHomeScreenBinding
 import com.hilguener.superheroesapp.model.character.Character
 
-class CharacterAdapter(
+class CharacterHomeScreenAdapter(
     private val onItemClickListener: (Character) -> Unit
-) : PagingDataAdapter<Character, CharacterAdapter.CharacterViewHolder>(CharacterComparator) {
+) : PagingDataAdapter<Character, CharacterHomeScreenAdapter.CharacterViewHolder>(CharacterComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        val binding = CharacterItemBinding.inflate(
+        val binding = CharacterItemHomeScreenBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -29,7 +30,7 @@ class CharacterAdapter(
         holder.bind(item)
     }
 
-    inner class CharacterViewHolder(private val binding: CharacterItemBinding) :
+    inner class CharacterViewHolder(private val binding: CharacterItemHomeScreenBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -44,15 +45,14 @@ class CharacterAdapter(
 
         fun bind(character: Character?) {
             binding.apply {
-                characterTitle.text = character?.name
                 val imageUrl =
-                    "${character?.thumbnail?.path}/portrait_incredible.${character?.thumbnail?.extension}"
+                    "${character?.thumbnail?.path}/landscape_amazing.${character?.thumbnail?.extension}"
                 val requestOptions = RequestOptions().transform(RoundedCorners(16))
 
                 Glide.with(itemView)
                     .load(imageUrl)
                     .apply(requestOptions)
-                    .into(imgVillain)
+                    .into(villainCover)
             }
         }
     }

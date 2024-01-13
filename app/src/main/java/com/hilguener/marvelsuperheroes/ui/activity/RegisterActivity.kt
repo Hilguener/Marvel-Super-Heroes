@@ -3,8 +3,11 @@ package com.hilguener.marvelsuperheroes.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.hilguener.marvelsuperheroes.HomeScreen
 import com.hilguener.marvelsuperheroes.databinding.ActivityRegisterBinding
 import com.hilguener.marvelsuperheroes.datasource.callback.RegisterContract
 import com.hilguener.marvelsuperheroes.presenter.RegisterPresenter
@@ -13,6 +16,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract {
 
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var presenter: RegisterPresenter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -20,17 +24,22 @@ class RegisterActivity : AppCompatActivity(), RegisterContract {
 
         presenter = RegisterPresenter(this)
 
+        val enterButton = binding.registerBtnCreateAccount
 
         binding.registerEditEmail.addTextChangedListener(presenter.textWatcher)
         binding.registerEditPassword.addTextChangedListener(presenter.textWatcher)
         binding.registerEditConfirmPassword.addTextChangedListener(presenter.textWatcher)
 
-        binding.registerBtnCreateAccount.setOnClickListener {
-            presenter.onRegisterButtonClicked(
-                getEmail(),
-                getPassword(),
-                getConfirmPassword()
-            )
+        enterButton.setOnClickListener {
+            enterButton.showProgress(true)
+            Handler(Looper.getMainLooper()).postDelayed({
+                enterButton.showProgress(false)
+                presenter.onRegisterButtonClicked(
+                    getEmail(),
+                    getPassword(),
+                    getConfirmPassword()
+                )
+            }, 2000)
         }
 
         binding.registerTxtLogin.setOnClickListener {
@@ -42,7 +51,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract {
     }
 
 
-    override fun showEmailError(message: String?){}
+    override fun showEmailError(message: String?) {}
 
     override fun showPasswordError(message: String) {
         binding.registerEditPassword.error = message
@@ -68,7 +77,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract {
 
     override fun showRegisterSuccess() {
         Toast.makeText(this, "Registro realizado com sucesso!", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, HomeActivity::class.java)
+        val intent = Intent(this, HomeScreen::class.java)
         startActivity(intent)
         finish()
     }

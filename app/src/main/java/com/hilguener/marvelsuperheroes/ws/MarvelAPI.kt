@@ -1,7 +1,9 @@
 package com.hilguener.superheroesapp.ws
 
-import com.hilguener.superheroesapp.model.character.CharactersDTO
+import com.hilguener.marvelsuperheroes.model.series.Serie
+import com.hilguener.marvelsuperheroes.model.series.SeriesDTO
 import com.hilguener.superheroesapp.model.character.Character
+import com.hilguener.superheroesapp.model.character.CharactersDTO
 import com.hilguener.superheroesapp.model.comics.ComicsDTO
 import com.hilguener.superheroesapp.model.events.EventDataWrapper
 import com.hilguener.superheroesapp.model.stories.Stories
@@ -32,9 +34,18 @@ interface MarvelAPI {
         @Query("apikey") apiKey: String = API_KEY,
         @Query("ts") ts: String = getCurrentTimeStamp(),
         @Query("hash") hash: String = generateHash(getCurrentTimeStamp()),
-        @Query("offset") offset: Int = 100,
+        @Query("offset") offset: Int = 800,
         @Query("limit") limit: Int = 100
     ): Call<CharactersDTO<Character>>
+
+    @GET("/v1/public/series")
+    fun getAllSeries(
+        @Query("apikey") apiKey: String = API_KEY,
+        @Query("ts") ts: String = getCurrentTimeStamp(),
+        @Query("hash") hash: String = generateHash(getCurrentTimeStamp()),
+        @Query("offset") offset: Int = 10,
+        @Query("limit") limit: Int = 30
+    ): Call<SeriesDTO>
 
     @GET("/v1/public/characters/{characterId}")
     fun getCharacterById(
@@ -87,8 +98,6 @@ interface MarvelAPI {
         @Query("offset") offset: Int = 0,
         @Query("limit") limit: Int = 100
     ): Call<Stories>
-
-
 
 
 }
