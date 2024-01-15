@@ -1,4 +1,4 @@
-package com.hilguener.marvelsuperheroes.ui
+package com.hilguener.marvelsuperheroes.ui.activity
 
 import android.content.Context
 import android.util.AttributeSet

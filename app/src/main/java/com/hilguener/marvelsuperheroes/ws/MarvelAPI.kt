@@ -35,7 +35,7 @@ interface MarvelAPI {
         @Query("ts") ts: String = getCurrentTimeStamp(),
         @Query("hash") hash: String = generateHash(getCurrentTimeStamp()),
         @Query("offset") offset: Int = 800,
-        @Query("limit") limit: Int = 100
+        @Query("limit") limit: Int = 99
     ): Call<CharactersDTO<Character>>
 
     @GET("/v1/public/series")

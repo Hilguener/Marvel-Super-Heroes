@@ -17,4 +17,10 @@
         <!-- Outras customizações de estilo -->
         <!-- Por exemplo: mudanças na barra de status, ícones, etc. -->
     </style>
+
+    <style name="ThemeAwareCardView">
+        <item name="cardBackgroundColor">@color/red</item>
+    </style>
+
+
 </resources>

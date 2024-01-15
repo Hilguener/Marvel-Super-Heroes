@@ -7,7 +7,6 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.hilguener.marvelsuperheroes.HomeScreen
 import com.hilguener.marvelsuperheroes.databinding.ActivityRegisterBinding
 import com.hilguener.marvelsuperheroes.datasource.callback.RegisterContract
 import com.hilguener.marvelsuperheroes.presenter.RegisterPresenter
@@ -77,7 +76,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract {
 
     override fun showRegisterSuccess() {
         Toast.makeText(this, "Registro realizado com sucesso!", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, HomeScreen::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
     }

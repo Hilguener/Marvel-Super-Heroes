@@ -5,14 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeScreen">
+    tools:context=".ui.activity.HomeActivity">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HomeScreen">
+        tools:context=".ui.activity.HomeActivity">
 
 
+        <ProgressBar
+            android:id="@+id/pbHomeScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/userName"
             android:layout_width="wrap_content"
@@ -32,18 +44,19 @@
             android:id="@+id/notificationIcon"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/bell"
             app:layout_constraintBottom_toBottomOf="@+id/userName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.921"
             app:layout_constraintStart_toEndOf="@+id/userName"
             app:layout_constraintTop_toTopOf="@+id/userName"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.39999998" />
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/comicsCardView"
+            style="@style/ThemeAwareCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -58,16 +71,16 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/white"
                 android:padding="10dp"
                 android:src="@drawable/comic" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/charactersCardView"
+            style="@style/ThemeAwareCardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="27dp"
             android:layout_weight="1"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
@@ -79,14 +92,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
-                android:src="@drawable/iron_man" />
+                android:src="@drawable/avengers" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/storiesCardView"
-            android:layout_width="84dp"
+            style="@style/ThemeAwareCardView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="25dp"
             android:layout_weight="1"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
@@ -98,11 +112,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
-                android:src="@drawable/book" />
+                android:src="@drawable/books" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/eventsCardView"
+            style="@style/ThemeAwareCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -119,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
-                android:src="@drawable/calendar" />
+                android:src="@drawable/event" />
         </androidx.cardview.widget.CardView>
 
 
@@ -184,7 +199,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/poppins_black"
             android:text="@string/characters"
@@ -197,7 +212,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCharactersMain"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="200dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"

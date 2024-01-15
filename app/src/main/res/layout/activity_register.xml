@@ -68,7 +68,7 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.hilguener.marvelsuperheroes.ui.LoadingButton
+            <com.hilguener.marvelsuperheroes.ui.activity.LoadingButton
                 android:id="@+id/register_btn_create_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,11 +1,10 @@
-package com.hilguener.marvelsuperheroes.ui
+package com.hilguener.marvelsuperheroes.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.hilguener.marvelsuperheroes.R
-import com.hilguener.marvelsuperheroes.ui.activity.LoginActivity
 
 class SplashScreen : AppCompatActivity() {
     private val handler = Handler()

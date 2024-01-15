@@ -42,17 +42,18 @@ class CharacterAdapter(
             }
         }
 
+
         fun bind(character: Character?) {
             binding.apply {
                 characterTitle.text = character?.name
                 val imageUrl =
-                    "${character?.thumbnail?.path}/portrait_incredible.${character?.thumbnail?.extension}"
+                    "${character?.thumbnail?.path}/standard_fantastic.${character?.thumbnail?.extension}"
                 val requestOptions = RequestOptions().transform(RoundedCorners(16))
 
                 Glide.with(itemView)
                     .load(imageUrl)
                     .apply(requestOptions)
-                    .into(imgVillain)
+                    .into(imgCharacter)
             }
         }
     }

@@ -18,15 +18,16 @@ import com.hilguener.marvelsuperheroes.databinding.ActivityCharacterBinding
 import com.hilguener.superheroesapp.model.character.Character
 import com.hilguener.superheroesapp.model.comics.Comic
 import com.hilguener.marvelsuperheroes.presenter.CharacterPresenter
+import com.hilguener.marvelsuperheroes.ui.adapter.CharacterComicsAdapter
 import com.hilguener.superheroesapp.ui.adapter.ComicsAdapter
 
 
-class CharacterActivity : AppCompatActivity(), ComicsAdapter.OnItemClickListener {
+class CharacterActivity : AppCompatActivity(), CharacterComicsAdapter.OnItemClickListener {
     private lateinit var binding: ActivityCharacterBinding
     private lateinit var pb: ProgressBar
     private lateinit var presenter: CharacterPresenter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var comicsAdapter: ComicsAdapter
+    private lateinit var comicsAdapter: CharacterComicsAdapter
     private val handler = Handler()
 
     companion object {
@@ -42,7 +43,7 @@ class CharacterActivity : AppCompatActivity(), ComicsAdapter.OnItemClickListener
         pb = binding.pbCharacter
         recyclerView = binding.rvCharacter // Referência para o RecyclerView
 
-        comicsAdapter = ComicsAdapter(this)
+        comicsAdapter = CharacterComicsAdapter(this)
         comicsAdapter.setOnItemClickListener(this)
 
         recyclerView.apply {

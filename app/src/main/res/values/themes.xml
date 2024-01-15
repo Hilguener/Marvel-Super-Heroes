@@ -20,9 +20,12 @@
 
         <item name="android:windowBackground">@color/white</item> <!-- Define o fundo da janela como branco -->
         <item name="android:textColor">@android:color/black</item>
-        <!-- Outras customizações de estilo -->
-        <!-- Por exemplo: mudanças na barra de status, ícones, etc. -->
     </style>
+
+    <style name="ThemeAwareCardView">
+        <item name="cardBackgroundColor">?attr/colorSurface</item>
+    </style>
+
 
 
 

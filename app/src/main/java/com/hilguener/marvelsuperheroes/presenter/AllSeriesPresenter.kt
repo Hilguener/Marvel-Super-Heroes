@@ -1,6 +1,5 @@
 package com.hilguener.marvelsuperheroes.presenter
 
-import com.hilguener.marvelsuperheroes.HomeScreen
 import com.hilguener.marvelsuperheroes.datasource.AllSeriesRemoteDatasource
 import com.hilguener.marvelsuperheroes.datasource.callback.BaseView
 import com.hilguener.marvelsuperheroes.datasource.callback.SeriesCallback
