@@ -118,7 +118,6 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         }
 
         // Redirecionar para a próxima tela ou executar ações após o login bem-sucedido
-        Toast.makeText(this, "Bem-vindo, $displayName", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
         finish()
@@ -145,7 +144,6 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
                 // Obtendo o nome do usuário
                 val displayName = user?.displayName ?: "Unknown User"
 
-                Toast.makeText(this, "Welcome, $displayName", Toast.LENGTH_LONG).show()
 
                 val intent = Intent(this, HomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
