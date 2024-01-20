@@ -137,13 +137,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         val githubProvider = OAuthProvider.newBuilder("github.com")
 
         auth.startActivityForSignInWithProvider(this, githubProvider.build())
-            .addOnSuccessListener { authResult ->
-                // Login bem-sucedido
-                val user = authResult.user
-
-                // Obtendo o nome do usuário
-                val displayName = user?.displayName ?: "Unknown User"
-
+            .addOnSuccessListener {
 
                 val intent = Intent(this, HomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -162,8 +156,6 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         if (requestCode == GOOGLE_SIGN_IN_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             presenter.handleGoogleSignInResult(data)
         } else {
-            // Handle cases where the sign-in process was canceled or failed
-            // For example, you might display an error message to the user
         }
     }
 

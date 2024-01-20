@@ -1,6 +1,6 @@
 package com.hilguener.superheroesapp.model.comics
 
-data class ComicsDTO(
+data class ComicsDTO<T>(
     val attributionHTML: String,
     val attributionText: String,
     val code: Int,

@@ -15,10 +15,10 @@ class ComicRemoteDataSource {
         RetrofitClient.retrofit()
             .create(MarvelAPI::class.java)
             .getComicsById(comicId)
-            .enqueue(object : Callback<ComicsDTO> {
-                override fun onResponse(call: Call<ComicsDTO>, response: Response<ComicsDTO>) {
+            .enqueue(object : Callback<ComicsDTO<Comic>> {
+                override fun onResponse(call: Call<ComicsDTO<Comic>>, response: Response<ComicsDTO<Comic>>) {
                     if (response.isSuccessful) {
-                        val comicsDTO: ComicsDTO? = response.body()
+                        val comicsDTO: ComicsDTO<Comic>? = response.body()
 
                         // Faça a manipulação dos dados recebidos conforme necessário
                         // Por exemplo, se você tem um objeto Comic dentro do ComicsDTO:
@@ -37,7 +37,7 @@ class ComicRemoteDataSource {
                     callback.onComplete()
                 }
 
-                override fun onFailure(call: Call<ComicsDTO>, t: Throwable) {
+                override fun onFailure(call: Call<ComicsDTO<Comic>>, t: Throwable) {
                     callback.onError(t.message ?: "Erro interno")
                     callback.onComplete()
                 }

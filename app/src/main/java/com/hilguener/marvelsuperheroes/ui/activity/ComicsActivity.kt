@@ -51,6 +51,8 @@ class ComicsActivity : AppCompatActivity() {
         } else {
             loadFromApi()
         }
+
+        searchComics()
     }
 
     private fun setupSharedPreferences() {
@@ -60,17 +62,6 @@ class ComicsActivity : AppCompatActivity() {
         )
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.bottom_nav_menu, menu)
-//
-//        val searchItem = menu.findItem(R.id.searchView)
-//        val searchView = searchItem.actionView as SearchView
-//
-//        // Configurar o SearchView
-//        searchView.queryHint = "search comics"
-//
-//        return true
-//    }
 
 
     private fun setupRecyclerView() {
@@ -127,5 +118,29 @@ class ComicsActivity : AppCompatActivity() {
 
     fun onFailure(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun searchComics() {
+        val searchView: androidx.appcompat.widget.SearchView = findViewById(R.id.searchView)
+
+        searchView.queryHint = "search comics"
+
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Atualizar a consulta na fonte de dados do Paging
+                presenter.searchComics(newText.orEmpty())
+                // Se o texto da consulta estiver vazio, recarregue os dados iniciais no RecyclerView
+                if (newText.isNullOrBlank()) {
+                    loadFromApi()
+                }
+
+                return true
+            }
+        })
     }
 }

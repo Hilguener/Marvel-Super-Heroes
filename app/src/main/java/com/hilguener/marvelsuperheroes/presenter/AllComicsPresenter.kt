@@ -19,6 +19,12 @@ class AllComicsPresenter(
         dataSource.findAllComics(this)
     }
 
+    fun searchComics(query: String) {
+        // Chamar o método de pesquisa adequado na fonte de dados remota
+        view.showProgress()
+        dataSource.searchComics(query, this)
+    }
+
     override fun onError(message: String) {
         view.onFailure(message)
         view.hideProgressBar()
@@ -32,6 +38,14 @@ class AllComicsPresenter(
             view.showComics(it)
         }
 
+        view.hideProgressBar()
+    }
+
+    override fun onSuccess(comics: List<Comic>) {
+        val comics = comics.filterIsInstance<Comic>()
+
+        this@AllComicsPresenter.comics = comics
+        view.showComics(comics)
         view.hideProgressBar()
     }
 

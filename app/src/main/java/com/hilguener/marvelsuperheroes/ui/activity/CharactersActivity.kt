@@ -49,7 +49,10 @@ class CharactersActivity : AppCompatActivity(), BaseView {
             showCharacters(cachedCharacters)
         } else {
             loadFromApi()
+
         }
+        searchCharacter()
+
     }
 
     private fun setupSharedPreferences() {
@@ -114,6 +117,28 @@ class CharactersActivity : AppCompatActivity(), BaseView {
     }
 
     override fun showSeries(series: List<Serie>) {
+    }
+
+    fun searchCharacter() {
+        val searchView: androidx.appcompat.widget.SearchView = findViewById(R.id.searchView)
+
+        searchView.queryHint = "search characters"
+
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                presenter.searchCharacters(newText.orEmpty())
+                if (newText.isNullOrBlank()) {
+                    loadFromApi()
+                }
+                return true
+            }
+        })
     }
 }
 

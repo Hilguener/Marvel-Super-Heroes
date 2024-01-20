@@ -53,11 +53,11 @@ class CharacterRemoteDataSource {
         RetrofitClient.retrofit()
             .create(MarvelAPI::class.java)
             .getCharacterComicsById(characterId)
-            .enqueue(object : Callback<ComicsDTO> {
+            .enqueue(object : Callback<ComicsDTO<Comic>> {
 
-                override fun onResponse(call: Call<ComicsDTO>, response: Response<ComicsDTO>) {
+                override fun onResponse(call: Call<ComicsDTO<Comic>>, response: Response<ComicsDTO<Comic>>) {
                     if (response.isSuccessful) {
-                        val comicsDTO: ComicsDTO? = response.body()
+                        val comicsDTO: ComicsDTO<Comic>? = response.body()
                         val comics: List<Comic>? = comicsDTO?.data?.results
                         callback(comics) // Ajuste para passar 'comics' para o callback
                     } else {
@@ -68,7 +68,7 @@ class CharacterRemoteDataSource {
                     }
                 }
 
-                override fun onFailure(call: Call<ComicsDTO>, t: Throwable) {
+                override fun onFailure(call: Call<ComicsDTO<Comic>>, t: Throwable) {
                     Log.e("CharacterDataSource", "Falha ao obter comics: ${t.message}")
                     callback(null)
                 }

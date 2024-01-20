@@ -5,6 +5,7 @@ import com.hilguener.superheroesapp.model.comics.Comic
 
 interface ComicsCallback {
     fun onComicsLoaded(character: Character?, comics: List<Comic>?)
+    fun onSuccess(comics: List<Comic>)
     fun onError(error: String)
     fun onComplete()
 }

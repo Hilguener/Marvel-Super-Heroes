@@ -17,6 +17,13 @@ class AllCharactersPresenter(
         dataSource.getCharacters(this)
     }
 
+    // Método para realizar a pesquisa na lista de personagens
+    fun searchCharacters(query: String) {
+        // Chamar o método de pesquisa adequado na fonte de dados remota
+        view.showProgress()
+        dataSource.searchCharacters(query, this)
+    }
+
     override fun onError(message: String) {
         view.onFailure(message)
         view.hideProgressBar()
@@ -24,7 +31,7 @@ class AllCharactersPresenter(
 
     override fun onSuccess(response: List<Character>) {
         // Extracting only the characters from the response
-        val characters = response.filter { it is Character }
+        val characters = response.filterIsInstance<Character>()
 
         this@AllCharactersPresenter.characters = characters
         view.showCharacters(characters)
@@ -35,4 +42,6 @@ class AllCharactersPresenter(
         view.hideProgressBar()
     }
 }
+
+
 

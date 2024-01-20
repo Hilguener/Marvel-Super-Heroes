@@ -4,6 +4,6 @@ import com.hilguener.superheroesapp.model.character.Character
 
 interface CharactersCallBack {
     fun onError(message: String)
-    fun onSuccess(characters: List<Character>) // Atualizado para retornar também a lista de quadrinhos
+    fun onSuccess(characters: List<Character>)
     fun onComplete()
 }

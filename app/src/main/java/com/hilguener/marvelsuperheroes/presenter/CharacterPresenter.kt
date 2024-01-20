@@ -26,6 +26,10 @@ class CharacterPresenter(
         view.showCharacter(character)
     }
 
+    override fun onSuccess(comics: List<Comic>) {
+
+    }
+
 
     override fun onError(message: String) {
         view.onFailure(message)
