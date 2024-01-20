@@ -5,10 +5,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
-import android.view.Menu
 import android.view.View
 import android.widget.ProgressBar
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.paging.PagingData
@@ -61,7 +59,6 @@ class ComicsActivity : AppCompatActivity() {
             Context.MODE_PRIVATE
         )
     }
-
 
 
     private fun setupRecyclerView() {
@@ -128,17 +125,15 @@ class ComicsActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                presenter.searchComics(query.orEmpty())
+
+                if (query.isNullOrBlank()) {
+                    loadFromApi()
+                }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // Atualizar a consulta na fonte de dados do Paging
-                presenter.searchComics(newText.orEmpty())
-                // Se o texto da consulta estiver vazio, recarregue os dados iniciais no RecyclerView
-                if (newText.isNullOrBlank()) {
-                    loadFromApi()
-                }
-
                 return true
             }
         })
